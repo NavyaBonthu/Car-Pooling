@@ -1,0 +1,82 @@
+{% include 'driverHead.html' %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var today = new Date().toISOString().slice(0, 16);
+            $("#start_date_time").attr("min",today)
+        });
+
+    </script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var today = new Date().toISOString().slice(0, 16);
+            $("#end_date_time").attr("min",today)
+        });
+
+    </script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class=" card mt-5 p-3" style="box-shadow:0px 5px 30px #dddddd;border-radius:50px;background-image:linear-gradient(45deg,rgba(153, 255, 255,.4),rgba(245,70,66, 0.4));" >
+                <form action="add_schedule1" method="post">
+                    <input type="hidden" name="vehicle_id" value="{{vehicle_id}}">
+                    <div class="text-center h4">Add Schedule</div>
+                    <div class="row">
+                        <div class="col-md-6 mt-1">
+                            <label for="source">Source</label>
+                            <input type="text" name="source" id="source" required placeholder="Enter Source" class="form-control" style="border-radius:50px;">
+                        </div>
+                        <div class="col-md-6 mt-1">
+                            <label for="destination">Destination</label>
+                            <input type="text" name="destination" id="destination" required placeholder="Enter Destination" class="form-control" style="border-radius:50px;">
+                        </div>
+                         <div class="col-md-6 mt-1">
+                            <label for="start_date_time">Start date Time</label>
+                            <input type="datetime-local" name="start_date_time" id="start_date_time" required  class="form-control" style="border-radius:50px;">
+                        </div>
+                         <div class="col-md-6 mt-1">
+                            <label for="end_date_time">End date Time</label>
+                            <input type="datetime-local" name="end_date_time" id="end_date_time" required  class="form-control" style="border-radius:50px;">
+                        </div>
+                         <div class="col-md-6 mt-1">
+                             <label for="ride_type" class="form-label">Ride Type</label>
+                             <select name="ride_type" id="ride_type" class="form-control" style="border-radius:50px;">
+                                <option value="">Choose Type</option>
+                                <option value="one_time_ride">One Time Ride</option>
+                                <option value="repeated_ride">Repeated Ride</option>
+                            </select>
+                        </div>
+                      <div class="col-md-6 mt-1">
+                            <label for="distance">Distance</label>
+                            <input type="text" name="distance" id="distance" required placeholder="Enter Distance" class="form-control" style="border-radius:50px;">
+                        </div>
+                          <div class="col-md-6 mt-1">
+                              <label for="no_of_seats" class="form-label">Number of Seats</label>
+                              <input type="number" value="{{vehicle_capacity}}" name="no_of_seats" id="no_of_seats" readonly class="form-control" style="border-radius:50px;">
+                        </div>
+                        <div class="col-md-6 mt-1">
+                              <label for="price" class="form-label">Price</label>
+                              <input type="number" name="price" id="price" required placeholder="Enter Price" class="form-control" style="border-radius:50px;">
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-md-9 mt-1">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea name="description" id="description" required placeholder="Enter Description" class="form-control" style="border-radius:50px;"></textarea>
+                        </div>
+                         <div class="col-md-3 mt-5">
+                                <input type="submit" value="Add Schedule" class="btn btn-success w-100" style="border-radius:50px;">
+                         </div>
+                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

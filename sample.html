@@ -1,0 +1,119 @@
+<style>
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(
+        #243545,
+        #243545 var(--line-offset),
+        #dedede var(--line-offset)
+    );
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Lexend Deca', sans-serif;
+
+
+    --menu-item-size: 50px;
+    --green-color: #329680;
+    --blue-color: #099c95;
+    --dark-green-color: #175b52;
+    --white-color: #FFF;
+    --gray-color: #EDEDED;
+    --container-width: 700px;
+    --container-height: 400px;
+    --line-offset: calc((100% - var(--container-height))/ 2 + var(--menu-item-size) + 0.6em);
+}
+
+
+.container {
+    width: var(--container-width);
+    height: var(--container-height);
+    margin-left: -350px;
+    margin-top: 0px;
+    top: 0%;
+    left: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+.main-menu {
+    display: flex;
+    list-style: none;
+
+}
+
+.main-menu > li {
+    box-sizing: border-box;
+    height: var(--menu-item-size);
+    width: calc(3.5 * var(--menu-item-size));
+    line-height: var(--menu-item-size);
+    padding: 0 2em;
+    margin: 1px;
+    transition: 0.5s linear all;
+    background: var(--green-color);
+    color: var(--dark-green-color);
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+}
+
+.main-menu > li:not(.with-submenu) {
+    clip-path: polygon(10% 0%, 0% 100%, 95% 100%, 100% 50%, 95% 0%);
+    shape-outside: polygon(10% 0%, 0% 100%, 95% 100%, 100% 50%, 95% 0%);
+}
+
+.main-menu > li:nth-child(2) {
+    transform: translateX(-5%);
+}
+
+.main-menu > li:nth-child(3) {
+    transform: translateX(-10%)
+}
+
+.main-menu > li:nth-child(4) {
+    transform: translateX(-15%)
+}
+
+
+.main-menu > li:hover:not(.active) {
+    background: linear-gradient(to right, var(--green-color), var(--blue-color));
+    color: var(--white-color);
+}
+
+.main-menu .active {
+    color: var(--white-color);
+    background: var(--blue-color);
+    cursor: default;
+    text-shadow: 1px 1px 1px var(--dark-green-color);
+    font-size: 18px;
+}
+
+.content {
+    padding: 0 0 0 3em;
+    font-size: 16px;
+}
+
+
+.with-submenu {
+    position: relative;
+    display: inline-block;
+    clip-path: polygon(10% 0%, 0% 100%, 0% 500%, 95% 500%, 95% 100%, 100% 50%, 95% 0%);
+    shape-outside: polygon(10% 0%, 0% 100%, 95% 100%, 100% 50%, 95% 0%);
+}
+</style>
+
+<body>
+ <div class="container">
+        <nav class="menu">
+            <ul class="main-menu">
+                <li class="active"><i class="fa fa-home"></i>Home</li>
+                <li class="with-submenu">
+                    <i class="fa fa-briefcase"></i>Portfolio <i class="fa fa-caret-down"></i>
+                </li>
+                <li><i class="fa fa-user"></i>About</li>
+                <li><i class="fa fa-search"></i>Search</li>
+            </ul>
+        </nav>
+    </div>
+</body>

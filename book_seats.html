@@ -1,0 +1,75 @@
+{% include 'riderHead.html' %}
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $("#no_of_persons").on("change",function(){
+        setBoxes()
+      });
+      $("#no_of_persons").on("keyup",function(){
+        setBoxes()
+      });
+
+    });
+
+    function setBoxes(){
+        let no_of_persons = $("#no_of_persons").val();
+        let available_seats = $("#available_seats").val();
+
+        if (parseInt(available_seats)<parseInt(no_of_persons)){
+            $("#err_msg").html('<div class="text-danger">only '+available_seats+' Seat are available</div>')
+            return
+        }
+        $("#err_msg").html('<div class="text-danger"></div>')
+        let persons_html = '<div class="row">';
+        for(let i=1;i<=no_of_persons;i++){
+            persons_html= persons_html +
+           `<div class="col-md-6" >
+           <div class="m-1 p-2" style="border:1px solid #ccc">
+            <div>Passenger ${i}</div>
+            <div class="mt-1">
+                <input type="text"  name="name${i}" placeholder="Name" class="form-control" required>
+            </div>
+            </div>
+            </div>
+            `
+        }
+        persons_html = persons_html + '</div>'
+        console.log(persons_html)
+        $("#persons").html(persons_html);
+    }
+</script>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class=" card mt-5 p-3" style="box-shadow:0px 5px 30px #dddddd;border-radius:50px;background-image:linear-gradient(45deg,rgba(153, 255, 255,.4),rgba(245,70,66, 0.4));" >
+              <input type="hidden" id="available_seats" value="{{available_seats}}">
+            <form action="book_seats1" method="post">
+              <input type="hidden" name="schedule_id" value="{{schedule_id}}">
+              <div class="text-center h4">Book Seats</div>
+                <div class="mt-3">
+                    <label for="pick_up_location">Pick Up Location</label>
+                    <input type="text" name="pick_up_location" id="pick_up_location" required placeholder="Enter Location" class="form-control" style="border-radius:50px;">
+                </div>
+                 <div class="mt-3">
+                    <label for="no_of_persons">Number of Rider Seats</label>
+                    <input type="number" min="1" max={{available_seats}} name="booked_seats" id="no_of_persons" required placeholder="Enter Number" class="form-control" style="border-radius:50px;">
+                </div>
+                <div id="err_msg"></div>
+                <div class="card mt-2 p-3" style="box-shadow:0px 5px 30px #dddddd;border-radius:50px;background-image:linear-gradient(45deg,rgba(153, 255, 255,.4),rgba(245,70,66, 0.4));">
+                    <div id="persons"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                         <div class="col-md-4 mt-3">
+                        <input type="submit" value="Book Seats" class="btn btn-success w-90" style="border-radius:50px;">
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+</div>

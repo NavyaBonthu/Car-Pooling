@@ -1,0 +1,55 @@
+{% include 'driverHead.html' %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="text-center" style="font-size:30px;color:black;margin-top:45px;">Vehicles</div>
+    </div>
+    <div class="col-md-3">
+      <form action="add_vehicle" method="post">
+        <a href="add_vehicle" class="btn btn-primary w-100" style="color:white;margin-top:45px;border-radius:50px;">Add Vehicle</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+     {% for vehicle in vehicles:%}
+     {% set user = get_user_id(vehicle['user_id'])%}
+     <div class="row" style="margin-top:50px;">
+         <div class="col-md-2"></div>
+         <div class="col-md-8">
+              <div class="card p-3" style="border-radius:50px">
+                      <div class="text-center mt-3"><b>Vehicles</b></div>
+                  <div class="row">
+                      <div class="col-md-2 mt-3">
+                         <div class="text-muted">Driver Name</div>
+                         <div class="h6">{{user['name']}}</div>
+                     </div>
+                     <div class="col-md-2 mt-3">
+                         <div class="text-muted">Vehicle Name</div>
+                         <div class="h6">{{vehicle['vehicle_name']}}</div>
+                     </div>
+                     <div class="col-md-2 mt-3">
+                         <div class="text-muted">Vehicle Type</div>
+                         <div class="h6">{{vehicle['vehicle_type']}}</div>
+                     </div>
+                      <div class="col-md-3 mt-3">
+                         <div class="text-muted">Vehicle Number</div>
+                         <div class="h6">{{vehicle['vehicle_number']}}</div>
+                     </div>
+                    <div class="col-md-3 mt-3">
+                         <div class="text-muted">Vehicle Capacity</div>
+                         <div class="h6">{{vehicle['vehicle_capacity']}}</div>
+                     </div>
+                      <div class="col-md-3 mt-3">
+                            <a href="add_schedule?vehicle_id={{vehicle['_id']}}" class="btn btn-success w-100"  style="border-radius:50px;">Add Schedule</a>
+                     </div>
+                  </div>
+                </div>
+             </div>
+          </div>
+    {% endfor %}
+</div>
+

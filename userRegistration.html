@@ -1,0 +1,67 @@
+{% include 'links.html'%}
+<script>
+    function validate(){
+        let phone = document.getElementById("phone").value
+        console.log(phone)
+        if(phone.length!=10){
+            alert('PhoneNumber Length Must be Greater than 10')
+            return false
+        }
+        return true
+    }
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class=" card mt-5 p-3" style="box-shadow:0px 5px 30px #dddddd;border-radius:50px;background-image:linear-gradient(45deg,rgba(153, 255, 255,.4),rgba(245,70,66, 0.4));" >
+                <form action="userRegistration1" method="post" onsubmit="return validate()" enctype="multipart/form-data">
+                    <div class="text-center h4">User Registration</div>
+                    <div class="row">
+                        <div class="col-md-6 mt-1">
+                            <label for="name">User Name</label>
+                            <input type="text" name="name" id="name" required placeholder="Enter Name" class="form-control" style="border-radius:50px;">
+                        </div>
+                        <div class="col-md-6 mt-1">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" required placeholder="Enter Email" class="form-control" style="border-radius:50px;">
+                        </div>
+                         <div class="col-md-6 mt-1">
+                            <label for="phone">Phone Number</label>
+                            <input type="number" min="0" name="phone" id="phone" required placeholder="Enter Number" class="form-control" style="border-radius:50px;">
+                        </div>
+                         <div class="col-md-6 mt-1">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" required placeholder="Enter Password" class="form-control" style="border-radius:50px;">
+                        </div>
+                         <div class="col-md-6 mt-1">
+                             <label for="type" class="form-label">Type</label>
+                             <select name="type" id="type" class="form-control" style="border-radius:50px;">
+                                <option value="">Choose Type</option>
+                                <option value="Driver">Driver</option>
+                                <option value="Rider">Rider</option>
+                            </select>
+                        </div>
+                      <div class="col-md-6 mt-1">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" id="image" required class="form-control" style="border-radius:50px;">
+                        </div>
+                          <div class="col-md-6 mt-1">
+                           <div class="mt-2"> <label>Gender</label></div>
+                            <input type="radio" name="gender" id="male" value="male"><label for="male">Male</label>
+                            <input type="radio" name="gender" id="female" value="female"><label for="female">Female</label>
+                        </div>
+                        <div class="col-md-6 mt-1">
+                          <div class="row">
+                              <div class="col-md-3"></div>
+                              <div class="col-md-6">
+                                <input type="submit" value="Register" class="btn btn-success w-100" style="border-radius:50px;">
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

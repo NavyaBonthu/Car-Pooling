@@ -1,0 +1,77 @@
+{% if session['type'] == 'Driver':%}
+    {% include 'driverHead.html' %}
+{% elif session['type'] == 'Rider':%}
+    {% include 'riderHead.html' %}
+{% else:%}
+    {% include 'userLogin.html' %}
+{% endif %}
+
+<div class="container">
+     <div class="row" style="margin-top:60px;">
+         {% for schedule in schedules:%}
+         {% set vehicle = get_vehicle_id(schedule['vehicle_id'])%}
+             <div class="col-md-6">
+             <div class="card mt-2 p-3" style="border-radius:50px">
+                  <div class="text-center mt-3"><b><a href="vehicle_details?schedule_id={{schedule['_id']}}"><b>{{vehicle['vehicle_name']}} Schedule</b></a></b></div>
+                 <div class="row">
+                     <div class="col-md-3 mt-3">
+                         <div class="text-muted">Source</div>
+                         <div class="h6">{{schedule['source']}}</div>
+                     </div>
+                      <div class="col-md-3 mt-3">
+                         <div class="text-muted">Destination</div>
+                         <div class="h6">{{schedule['destination']}}</div>
+                     </div>
+                     <div class="col-md-3 mt-3">
+                         <div class="text-muted">Start Date</div>
+                         <div class="h6">{{schedule['start_date_time'].date()}} {{schedule['start_date_time'].strftime("%I")}}:{{schedule['start_date_time'].strftime("%M")}} {{schedule['start_date_time'].strftime("%p")}}</div>
+                     </div>
+                       <div class="col-md-3 mt-3">
+                         <div class="text-muted">End Date</div>
+                         <div class="h6">{{schedule['end_date_time'].date()}} {{schedule['end_date_time'].strftime("%I")}}:{{schedule['end_date_time'].strftime("%M")}} {{schedule['end_date_time'].strftime("%p")}}</div>
+                     </div>
+                      <div class="col-md-3 mt-3">
+                         <div class="text-muted">Ride Type</div>
+                         <div class="h6">{{schedule['ride_type']}}</div>
+                     </div>
+                     <div class="col-md-3 mt-3">
+                         <div class="text-muted">Distance</div>
+                         <div class="h6">{{schedule['distance']}} km</div>
+                     </div>
+                     <div class="col-md-3 mt-3">
+                         <div class="text-muted">Seats</div>
+                         <div class="h6">{{schedule['no_of_seats']}}</div>
+                     </div>
+                     <div class="col-md-3 mt-3">
+                         <div class="text-muted">Price</div>
+                         <div class="h6">$ {{schedule['price']}}</div>
+                     </div>
+                     <div class="col-md-5 mt-3">
+                         <div class="text-muted">Status</div>
+                         <div class="h6">{{schedule['status']}}</div>
+                     </div>
+                     <div class="col-md-3 mt-3">
+                         <div class="text-muted">Occupied Seats</div>
+                         <div class="h6">{{schedule['occupied_seats']}}</div>
+                     </div>
+
+                     {% if session['type'] == 'Rider'%}
+                        {% if schedule['status'] == status_schedule_added or schedule['status'] == status_seat_booked: %}
+                         {% if str(schedule['no_of_seats']) != str(schedule['occupied_seats']) %}
+                          <div class="col-md-4 mt-3">
+                                <a href="book_seats?schedule_id={{schedule['_id']}}" class="btn btn-primary" style="border-radius:50px;">Book Seats</a>
+                          </div>
+                          {% endif %}
+                     {% endif %}
+                     {% endif %}
+                      {% if session['type'] == 'Driver' and schedule['status'] == status_seat_booked%}
+                         <div class="col-md-4 mt-3">
+                            <a href="view_booking?schedule_id={{schedule['_id']}}" class="btn btn-primary" style="border-radius:50px;">View Bookings</a>
+                      </div>
+                     {% endif %}
+                 </div>
+               </div>
+             </div>
+         {% endfor %}
+     </div>
+</div>

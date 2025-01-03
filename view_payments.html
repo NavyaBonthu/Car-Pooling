@@ -1,0 +1,41 @@
+{% if session['type'] == 'Driver':%}
+    {% include 'driverHead.html' %}
+{% elif session['type'] == 'Rider':%}
+    {% include 'riderHead.html' %}
+{% else:%}
+    {% include 'userLogin.html' %}
+{% endif %}
+
+<div style="position:absolute;left:0;top:100px;z-index:1000;width:100%;">
+<div class="container">
+  <div class="row">
+    <div class="text-center h4" style="margin-top:70px">View Payments</div>
+    <table class="table table-white table-bordered mt-2" style="background-color:white">
+      <tr>
+        <thead>
+          <th>Driver Name</th>
+          <th>Holder Name</th>
+          <th>Card Number</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>status</th>
+        </thead>
+      </tr>
+      <tbody>
+       {% for payment in payments:%}
+       {% set driver = get_booking_payment_id(payment['booking_id'])%}
+
+       <tr>
+        <td>{{driver['name']}}</td>
+        <td>{{payment['holder_name']}}</td>
+        <td>{{payment['card_number']}}</td>
+        <td>$ {{payment['amount']}}</td>
+        <td>{{payment['date'].date()}} {{payment['date'].strftime("%I")}}:{{payment['date'].strftime("%M")}} {{payment['date'].strftime("%p")}}</td>
+        <td>{{payment['status']}}</td>
+       </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

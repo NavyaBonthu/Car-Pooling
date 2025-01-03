@@ -1,0 +1,19 @@
+{% if session['type'] == 'Driver':%}
+    {% include 'driverHead.html' %}
+{% elif session['type'] == 'Rider':%}
+    {% include 'riderHead.html' %}
+{% else:%}
+    {% include 'userLogin.html' %}
+{% endif %}
+<div style="position:absolute;left:0;top:100px;z-index:1000;width:100%;">
+<div class="container mt-5">
+    <div class="text-center h3 {{color}}">{{message}}</div>
+    {% if message =='Invalid Login Details' %}
+        <a href="/" class="btn btn-info w-100 mt-5">Login Again</a>
+    {% endif %}
+     {% if message =='Duplicate Details' %}
+        <a href="/" class="btn btn-info w-100 mt-5">Register Again</a>
+    {% endif %}
+
+</div>
+</div>

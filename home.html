@@ -1,0 +1,59 @@
+{% if session['type'] == 'Driver':%}
+    {% include 'driverHead.html' %}
+{% elif session['type'] == 'Rider':%}
+    {% include 'riderHead.html' %}
+{% else:%}
+    {% include 'userLogin.html' %}
+{% endif %}
+
+{% if session['type'] == 'Driver':%}
+    <style>
+        body{
+        background-image: url('https://ehss.ae/wp-content/uploads/2023/03/jkl.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+    </style>
+{% endif %}
+
+
+{% if session['type'] == 'Rider':%}
+    <style>
+        body{
+        background-image: url('https://media.istockphoto.com/id/1154373349/photo/good-looking-man-entering-ride-sharing-car.jpg?b=1&s=170667a&w=0&k=20&c=Svu-eRcpzESelNRE8ze9Qjw8_d66HpwatpSQMJlmGN8=');
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+    </style>
+{% endif %}
+
+<div class="container-fluid">
+     <div class="row" style="margin-top:60px;">
+        <div class="col-md-3">
+            <div class="text-center mt-3 h5"><b>Personal Details</b></div>
+            <div class="card mt-2 p-2" style="border-radius:50px;">
+                  <div class="card-image text-center">
+                    <img src="/static/image/{{user['image']}}" style="max-width:100%;height:100px;">
+                </div>
+                 <div class="mt-3 text-center">
+                    <div class="text-muted" style="font-size:15px"> Name : <span style="font-size:16px;"><b>{{user['name']}}</b></span></div>
+                    <div class="h6"></div>
+                 </div>
+                <div class="mt-1 text-center">
+                    <div class="text-muted" style="font-size:15px">Phone Number : <span style="font-size:16px;"><b>{{user['phone']}}</b></span></div>
+                    <div class="h6"></div>
+                </div>
+                <div class="mt-1 text-center">
+                    <div class="text-muted" style="font-size:15px">Email : <span style="font-size:16px;"><b>{{user['email']}}</b></span></div>
+                    <div class="h6"></div>
+                </div>
+                <div class="mt-1 text-center">
+                    <div class="text-muted" style="font-size:15px">Gender : <span style="font-size:16px;"><b>{{user['gender']}}</b></span></div>
+                    <div class="h6"></div>
+                </div>
+           </div>
+       </div>
+   </div>
+</div>
+
+

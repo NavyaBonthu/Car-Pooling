@@ -1,0 +1,35 @@
+
+{% if session['type'] == 'Driver':%}
+    {% include 'driverHead.html' %}
+{% elif session['type'] == 'Rider':%}
+    {% include 'riderHead.html' %}
+{% else:%}
+    {% include 'userLogin.html' %}
+{% endif %}
+
+<div class="container">
+     <div class="row" style="margin-top:60px;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="text-center mt-3"><b>Vehicle Details</b></div>
+            <div class="card mt-2 p-2">
+                 <div class="mt-1">
+                    <div class="text-muted">Vehicle Name</div>
+                    <div class="h6">{{vehicle['vehicle_name']}}</div>
+                </div>
+                <div class="mt-1">
+                    <div class="text-muted">Vehicle Number</div>
+                    <div class="h6">{{vehicle['vehicle_number']}}</div>
+                </div>
+                <div class="mt-1">
+                    <div class="text-muted">Vehicle Type</div>
+                    <div class="h6">{{vehicle['vehicle_type']}}</div>
+                </div>
+                <div class="mt-1">
+                    <div class="text-muted">Vehicle Capacity</div>
+                    <div class="h6">{{vehicle['vehicle_capacity']}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
